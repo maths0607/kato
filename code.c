@@ -4,10 +4,10 @@
 #include <math.h>
  
  
-void saisi (float a,float b , float c , float *x,float *y,float *z );
-bool validite(bool resultat );
-float perimetre (float perimetr);
-float air(float surface);
+void saisi (float a,float b , float c  );
+int validite(float a,float b, float c );
+float perimetre (float a,float b, float c);
+float air(float a,float b, float c);
  
  
 int main()
@@ -18,46 +18,48 @@ int main()
     do{
      printf("Saisir les entier a , b et c \n");
 
-     saisi(a,b,c,&x,&y,&z);
+     saisi(a,b,c);
 
-     resultat = validite(a,b,c);
+     resultat = validite(x,y,z);
 
-     if(resultat==false){ printf("erreur");}
+     if(resultat==0){ printf("erreur \n");}
 
-    }while(resultat==false);
-    printf("Le perimetre est %f ", perimetre(perimetr));
-    printf("Le surface est %f ",   air(surface));
+    }while(resultat==0);
+    printf("Le perimetre est %f ", perimetre(a,b,c));
+    printf("Le surface est %f ",   air(a,b,c));
     
     return 0;
 }
-void saisi (float a,float b , float c , float *x,float *y,float *z )
+void saisi (float a,float b , float c  )
 {    printf("\n");
     scanf("%f\n",&a);
     scanf("%f\n",&b);
     scanf("%f",&c);
     *x=a;
     *y=b;
-    *z=c;
+    *z=c
+    
+   
 }
 
-bool validite(float x ,float y,float z)
+int validite(float x ,float y,float z)
 { 
   if( x+y>z && x+z>y && y+z>x)
   {
-   return true;
+   return 1;
   }else {
-    return false;
+    return 0;
   }
 }
   
-float perimetre(float perimetr)
+float perimetre(float x,float y,float z)
 {
-    float x,y,z;
-    perimetr=x+y+z;
+    return x+y+z;
 }
-float air(float surface)
-{ float x,y,z,s=(x+y+z)/2;
-  surface=sqrt(s*(s-x)*(s-y)*(s-z));
+
+float air(float x,float y,float z)
+{ float s=(x+y+z)/2;
+  return sqrt(s*(s-x)*(s-y)*(s-z));
  
 }
 
